@@ -15,17 +15,23 @@ const Home = () => {
       <div className="relative py-60 mt-4">
         <div className="absolute inset-0 bg-black opacity-75"></div>
         <div className="container mx-auto px-4 relative z-10">
-          <h1 className="text-white font-bold text-3xl mb-4">
-            Your Banner Title Here
+          <h1 className=" font-bold text-3xl mb-4">
+            Crafting Exceptional Dishes with <br /> Passion and Precision
           </h1>
-          <p className="text-white text-lg mb-8">
-            Your banner description goes here.
+          <p className=" text-lg mb-8">
+            The chef's expertise and mastery of the culinary arts, <br />
+            emphasizing their commitment to creating exceptional dishes <br />
+            with both passion and precision. It suggests that the chef has
+            <br />
+            honed their skills through extensive training and experience, <br />
+            and is dedicated to delivering the highest quality cuisine to <br />
+            their customers.
           </p>
           <a
             href="#"
-            className="bg-white text-gray-800 font-bold py-2 px-4 rounded hover:bg-gray-200"
+            className="bg-white my-btn text-gray-800 font-bold py-2 px-4 rounded hover:bg-gray-200 "
           >
-            Call to Action
+            Call us
           </a>
         </div>
         <img
@@ -35,7 +41,7 @@ const Home = () => {
         />
       </div>
 
-      <h1>chefs section</h1>
+      <h1 className="text-5xl font-bold text-center mt-16">Top Experienced Chefs</h1>
       <div className="my-container grid gap-8 lg:grid-cols-2 mt-10">
         {allData.map((data) => (
           <div key={data.id}>
@@ -60,9 +66,7 @@ const Home = () => {
                   {data.experience}
                 </h3>
                 <h3 className="mt-4">
-                  <span className="text-xl font-bold">
-                    Numbers of recipes:
-                  </span>
+                  <span className="text-xl font-bold">Numbers of recipes:</span>
                   {data.totalRecipes}
                 </h3>
                 <h3 className="mt-4">
@@ -70,13 +74,19 @@ const Home = () => {
                   {data.likes}
                 </h3>
                 <div className="card-actions justify-end mt-20">
-                  <button className="btn btn-primary">View Recipes</button>
+                  <button className="my-btn btn-primary">View Recipes</button>
                 </div>
               </div>
             </div>
           </div>
         ))}
       </div>
+
+      <section>
+        <div>
+          <h1 className="">Take Our Chefs to Your Events</h1>
+        </div>
+      </section>
     </div>
   );
 };
