@@ -1,30 +1,81 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import bannerImage from "../../../src/assets/pexels-ella-wei-6549194.jpg";
 
 const Home = () => {
+  const [allData, setAllData] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:5000/alldata")
+      .then((res) => res.json())
+      .then((data) => setAllData(data))
+      .catch((error) => console.error(error));
+  },[])
   return (
     <div>
-      <div class="relative py-60 mt-4">
-        <div class="absolute inset-0 bg-black opacity-75"></div>
-        <div class="container mx-auto px-4 relative z-10">
-          <h1 class="text-white font-bold text-3xl mb-4">
+      <div className="relative py-60 mt-4">
+        <div className="absolute inset-0 bg-black opacity-75"></div>
+        <div className="container mx-auto px-4 relative z-10">
+          <h1 className="text-white font-bold text-3xl mb-4">
             Your Banner Title Here
           </h1>
-          <p class="text-white text-lg mb-8">
+          <p className="text-white text-lg mb-8">
             Your banner description goes here.
           </p>
           <a
             href="#"
-            class="bg-white text-gray-800 font-bold py-2 px-4 rounded hover:bg-gray-200"
+            className="bg-white text-gray-800 font-bold py-2 px-4 rounded hover:bg-gray-200"
           >
             Call to Action
           </a>
         </div>
         <img
-          class="absolute inset-0 object-cover w-full h-full"
+          className="absolute inset-0 object-cover w-full h-full"
           src={bannerImage}
           alt="Banner Image"
         />
+      </div>
+
+      <h1>chefs section</h1>
+      <div className="my-container grid gap-8 lg:grid-cols-2 mt-10">
+        {allData.map((data) => (
+          <div key={data.id}>
+            <div className="card card-side bg-base-100 shadow-xl h-96 ">
+              <figure>
+                <div>
+                  <img
+                    className="h-[330px] w-[550px]"
+                    src={data.image}
+                    alt=""
+                  />
+                  <h2 className="card-title text-2xl font-extrabold mt-2 ml-8">
+                    {data.name}
+                  </h2>
+                </div>
+              </figure>
+              <div className="card-body text-lg font-medium">
+                <h3>
+                  <span className="text-xl font-bold">
+                    Years of experience:
+                  </span>
+                  {data.experience}
+                </h3>
+                <h3 className="mt-4">
+                  <span className="text-xl font-bold">
+                    Numbers of recipes:
+                  </span>
+                  {data.totalRecipes}
+                </h3>
+                <h3 className="mt-4">
+                  <span className="text-xl font-bold">Likes: </span>
+                  {data.likes}
+                </h3>
+                <div className="card-actions justify-end mt-20">
+                  <button className="btn btn-primary">View Recipes</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );
