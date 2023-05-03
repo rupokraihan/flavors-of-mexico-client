@@ -1,9 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigation, useParams } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 const ChefDetails = () => {
+  // const navigation = useNavigation();
+
+
   const { id } = useParams();
   const [chefData, setChefData] = useState({});
+  const [isFavorite, setIsFavorite] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     fetch("http://localhost:5000/alldata")
@@ -11,8 +18,18 @@ const ChefDetails = () => {
       .then((data) => {
         const chef = data.filter((item) => item.id === id)[0];
         setChefData(chef);
+        setIsLoading(false);
       });
   }, [id]);
+
+  const handleFavorite = () => {
+    setIsFavorite(true); // set the button disabled status to true
+    // Your favorite logic here
+    toast.success("Successfully added to favorites!");
+  };
+   if (isLoading) {
+     return <LoadingSpinner />;
+   }
 
   return (
     <div className="my-container">
@@ -47,9 +64,11 @@ const ChefDetails = () => {
           {/* head */}
 
           <tbody>
-            <th className="text-2xl">
-              More information about {chefData.name}:
-            </th>
+            <tr>
+              <th className="text-2xl">
+                More information about {chefData.name}:
+              </th>
+            </tr>
             {/* row 1 */}
 
             <tr>
@@ -74,7 +93,13 @@ const ChefDetails = () => {
         </table>
       </div>
       <div className="text-center mt-8">
-        <button className="my-btn">Favorite </button>
+        <button
+          className="my-btn"
+          onClick={handleFavorite}
+          disabled={isFavorite}
+        >
+          {isFavorite ? "Favorited" : "Favorite"}
+        </button>
       </div>
     </div>
   );
