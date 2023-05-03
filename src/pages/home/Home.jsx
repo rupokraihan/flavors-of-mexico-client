@@ -56,7 +56,7 @@ const Home = () => {
               <figure>
                 <div>
                   <img
-                    className="h-[330px] w-[550px]"
+                    className="lg:h-[330px] w-[550px]"
                     src={data.image}
                     alt=""
                   />
@@ -80,7 +80,7 @@ const Home = () => {
                   <span className="text-xl font-bold">Likes: </span>
                   {data.likes}
                 </h3>
-                <div className="card-actions justify-end mt-20">
+                <div className="card-actions justify-end lg:mt-20">
                   <Link to={`alldata/${data.id}`}>
                     <button className="my-btn btn-primary">View Recipes</button>
                   </Link>

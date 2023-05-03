@@ -3,8 +3,8 @@ import React from "react";
 const About = () => {
   return (
     <div>
-      <h1 className="text-5xl font-bold text-center mt-16">About Us</h1>
-      <div className="my-container flex justify-between">
+      <h1 className="text-5xl font-bold text-center mt-16">Contact Details</h1>
+      <div className="my-container lg:flex justify-between">
         <div>
           <h2 className="text-center text-2xl font-semibold mb-5">
             Our Office Address
@@ -14,7 +14,7 @@ const About = () => {
             Paseo de la Reforma 296, Juárez, Cuauhtémoc, <br /> 06600 Ciudad de
             México, CDMX, Mexico.
           </p>
-          <h5 className="text-xl font-semibold mb-2">Second Office </h5>
+          <h5 className="text-xl font-semibold mb-2 mt-6">Second Office </h5>
           <p>
             Paseo de la Reforma 505, Cuauhtémoc, <br /> 06500 Ciudad de México,
             CDMX, Mexico.

@@ -5,12 +5,12 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyAFgk93K-7z2RBvDpDPwEutZ4q0FRy2vQo",
-  authDomain: "mexican-chef-recipe-hunter.firebaseapp.com",
-  projectId: "mexican-chef-recipe-hunter",
-  storageBucket: "mexican-chef-recipe-hunter.appspot.com",
-  messagingSenderId: "335146140184",
-  appId: "1:335146140184:web:2a8487d0d8c0273193f96d"
+  apiKey: import.meta.env.VITE_APIKEY,
+  authDomain: import.meta.env.VITE_AUTHDOMAIN,
+  projectId: import.meta.env.VITE_PROJECTID,
+  storageBucket: import.meta.env.VITE_STORAGEBUCKET,
+  messagingSenderId: import.meta.env.VITE_MESSAGINGSENDERID,
+  appId: import.meta.env.VITE_APPID,
 };
 
 // Initialize Firebase
