@@ -5,6 +5,7 @@ import Blog from "../pages/Blog";
 import Login from "../layouts/Login";
 import ChefDetails from "../layouts/ChefDetails";
 import ErrorPage from "../components/ErrorPage";
+import Register from "../layouts/Register";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,11 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: <Login />,
+      },
+      {
+        path: "/register",
+        element:<Register/>
+
       },
       {
         path: "alldata/:id",

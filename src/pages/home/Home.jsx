@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import bannerImage from "../../../src/assets/pexels-ella-wei-6549194.jpg";
 import TakeChefs from "../home/TakeChefs";
 import About from "../home/About";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../providers/AuthProviders";
 
 
 
 const Home = () => {
+  // const user = useContext(AuthContext)
   const [allData, setAllData] = useState([]);
 
   useEffect(() => {
