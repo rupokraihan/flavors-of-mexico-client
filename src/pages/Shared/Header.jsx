@@ -1,17 +1,22 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-import {
-  Bars3BottomRightIcon,
-  XMarkIcon,
-} from "@heroicons/react/24/solid";
+import { Bars3BottomRightIcon, XMarkIcon } from "@heroicons/react/24/solid";
+import { AuthContext } from "../../providers/AuthProviders";
 
 const Header = () => {
+  const { user, logOut } = useContext(AuthContext);
+
+  const handleLogout = () => {
+    logOut()
+      .then(() => {})
+      .catch((error) => console.error(error));
+  };
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   return (
     <div className="bg-gray-200 px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 ">
       <div className="relative flex items-center justify-between">
         <Link to="/" className="inline-flex items-center">
-          
           <span className="ml-2 text-xl font-bold tracking-wide text-gray-800">
             Flavors of Mexico
           </span>
@@ -34,14 +39,35 @@ const Header = () => {
               Blog
             </NavLink>
           </li>
-            <li>Profile</li>
           <li>
-            <NavLink
-              to="/login"
-              className={({ isActive }) => (isActive ? "active" : "default")}
-            >
-              Login
-            </NavLink>
+            {user ? (
+              <>
+                <div className="flex gap-6 items-center space-x-2">
+                  <NavLink
+                    onClick={handleLogout}
+                    className={({ isActive }) =>
+                      isActive ? "active" : "default"
+                    }
+                  >
+                    Sign out
+                  </NavLink>
+                  <div className="w-12 h-12 rounded-full ring  ">
+                    <img
+                      className="rounded-full w-12 h-12"
+                      src={user.photoURL}
+                      alt="User profile"
+                    />
+                  </div>
+                </div>
+              </>
+            ) : (
+              <NavLink
+                to="/login"
+                className={({ isActive }) => (isActive ? "active" : "default")}
+              >
+                Login
+              </NavLink>
+            )}
           </li>
         </ul>
         {/* Mobile Navbar Section */}
@@ -61,7 +87,6 @@ const Header = () => {
                 <div className="flex items-center justify-between mb-4">
                   <div>
                     <Link to="/" className="inline-flex items-center">
-                      
                       <span className="ml-2 text-xl font-bold tracking-wide text-gray-800 uppercase">
                         Flavors of Mexico
                       </span>
@@ -110,8 +135,7 @@ const Header = () => {
         </div>
       </div>
 
-      <h1>
-      </h1>
+      <h1></h1>
     </div>
   );
 };

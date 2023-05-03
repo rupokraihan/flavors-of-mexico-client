@@ -3,12 +3,13 @@ import bannerImage from "../../../src/assets/pexels-ella-wei-6549194.jpg";
 import TakeChefs from "../home/TakeChefs";
 import About from "../home/About";
 import { Link } from "react-router-dom";
-import { AuthContext } from "../../providers/AuthProviders";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 
 
 const Home = () => {
-  // const user = useContext(AuthContext)
+  
   const [allData, setAllData] = useState([]);
 
   useEffect(() => {
@@ -53,15 +54,17 @@ const Home = () => {
       </h1>
       <div className="my-container grid gap-8 lg:grid-cols-2 mt-10">
         {allData.map((data) => (
-          <div key={data.id}>
+          <section key={data.id}>
             <div className="card card-side bg-base-100 shadow-xl h-96 ">
               <figure>
                 <div>
-                  <img
+                  <LazyLoadImage
+                    effect="blur"
                     className="lg:h-[330px] w-[550px]"
                     src={data.image}
                     alt=""
                   />
+
                   <h2 className="card-title text-2xl font-extrabold mt-2 ml-8">
                     {data.name}
                   </h2>
@@ -89,7 +92,7 @@ const Home = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </section>
         ))}
       </div>
 
