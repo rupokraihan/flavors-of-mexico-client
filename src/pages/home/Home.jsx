@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import bannerImage from "../../../src/assets/pexels-ella-wei-6549194.jpg";
 import TakeChefs from "../home/TakeChefs";
 import About from "../home/About";
+import { Link } from "react-router-dom";
 
 
 
@@ -80,7 +81,9 @@ const Home = () => {
                   {data.likes}
                 </h3>
                 <div className="card-actions justify-end mt-20">
-                  <button className="my-btn btn-primary">View Recipes</button>
+                  <Link to={`alldata/${data.id}`}>
+                    <button className="my-btn btn-primary">View Recipes</button>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -89,11 +92,10 @@ const Home = () => {
       </div>
 
       <section>
-        <TakeChefs/>
+        <TakeChefs />
       </section>
       <section>
-        <About/>
-
+        <About />
       </section>
     </div>
   );
