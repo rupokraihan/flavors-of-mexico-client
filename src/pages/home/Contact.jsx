@@ -1,6 +1,6 @@
 import React from "react";
 
-const About = () => {
+const Contact = () => {
   return (
     <div>
       <h1 className="text-5xl font-bold text-center mt-16">Contact Details</h1>
@@ -24,27 +24,27 @@ const About = () => {
           <h2 className="text-center text-2xl font-semibold mb-5">
             Opening Hours{" "}
           </h2>
-          <h5 className="text-xl font-semibold mb-2">Monday - Saturday </h5>
+          <h5 className="text-xl font-semibold mb-1">Monday - Saturday </h5>
           <p>12pm - 10:30pm</p>
 
-          <h5 className="text-xl font-semibold mb-2">Sunday </h5>
+          <h5 className="text-xl font-semibold mb-1 mt-6">Sunday </h5>
           <p>12pm - 9pm</p>
         </div>
         <div>
           <h2 className="text-center text-2xl font-semibold mb-5">
             Contact Numbers
           </h2>
-          <h5 className="text-xl font-semibold mb-2">telephone:</h5>
+          <h5 className="text-xl font-semibold mb-1">telephone:</h5>
           <p>
             +52 55 1234 5678, <br />
             +52 81 2345 6789
           </p>
-          <h5 className="text-xl font-semibold mb-2">Mobile No:</h5>
+          <h5 className="text-xl font-semibold mb-1 mt-6">Mobile No:</h5>
           <p>
             888 492 3882, <br />
             888 705 0198
           </p>
-          <h5 className="text-xl font-semibold mb-2">Hotline:</h5>
+          <h5 className="text-xl font-semibold mb-1 mt-6">Hotline:</h5>
           445566
         </div>
       </div>
@@ -52,4 +52,4 @@ const About = () => {
   );
 };
 
-export default About;
+export default Contact;

@@ -51,9 +51,9 @@ const Header = () => {
                   >
                     Sign out
                   </NavLink>
-                  <div className="w-12 h-12 rounded-full ring  ">
+                  <div className="w-11 h-11 rounded-full ring  ">
                     <img
-                      className="rounded-full w-12 h-12"
+                      className="rounded-full w-11 h-11"
                       src={user.photoURL}
                       alt="User profile"
                     />

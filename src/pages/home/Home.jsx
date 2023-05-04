@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import bannerImage from "../../../src/assets/pexels-ella-wei-6549194.jpg";
 import TakeChefs from "../home/TakeChefs";
-import About from "../home/About";
+import About from "./Contact";
 import { Link } from "react-router-dom";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
