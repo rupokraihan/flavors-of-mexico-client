@@ -6,7 +6,15 @@ const Blog = () => {
 
   return (
     <>
-      
+      <div className="mt-10 text-center">
+        <Pdf targetRef={blogRef} filename="blog.pdf">
+          {({ toPdf }) => (
+            <button className="my-btn" onClick={toPdf}>
+              Generate Pdf
+            </button>
+          )}
+        </Pdf>
+      </div>
 
       <div ref={blogRef} className="my-container">
         <div className="bg-blue-100  p-6 rounded-xl mb-8">
