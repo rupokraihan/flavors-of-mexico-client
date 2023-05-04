@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../providers/AuthProviders";
 
 const Register = () => {
-  const { user, createUser, userInfo,setUser } = useContext(AuthContext);
-  const [error,setError]=useState('')
+  const { user, createUser, userInfo, setUser } = useContext(AuthContext);
+  const [error, setError] = useState("");
 
   const handleRegister = (event) => {
     event.preventDefault();
@@ -15,24 +15,21 @@ const Register = () => {
     const password = form.password.value;
     const photo = form.userphoto.value;
 
-    
     if (password.length < 6) {
-      setError("password must be 6 characters or longer")
+      setError("password must be 6 characters or longer");
     }
 
     createUser(email, password)
       .then((result) => {
-        setUser(result.user)
-        
+        const loggedUser = result.user;
+
         userInfo(loggedUser, name, photo)
-        .then ((result)=>{})
-        form.reset()
+          .then((result) => {})
+          .catch((error) => console.log(error.message));
+
+        setUser(loggedUser);
       })
-      .catch((error) => {
-        console.log(error);
-      });
-    
-    
+      .catch((error) => console.log(error.message));
   };
   return (
     <div>
@@ -52,7 +49,6 @@ const Register = () => {
                   name="username"
                   placeholder="Name"
                   className="input input-bordered"
-                  
                 />
 
                 <label className="label">
@@ -85,7 +81,6 @@ const Register = () => {
                   name="userphoto"
                   placeholder="Photo URL"
                   className="input input-bordered"
-                  
                 />
                 <label className="label">
                   <a href="#" className="label-text-alt link link-hover">

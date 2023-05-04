@@ -1,12 +1,28 @@
 import React, { useContext } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../providers/AuthProviders";
+import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
+import app from "../utils/firebase.config";
 
 const Login = () => {
-   ;
+  const auth = getAuth(app);
   const { signIn,setUser } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
+  const provider = new GoogleAuthProvider();
+
+  const handleGoogleLogin = () => {
+    signInWithPopup(auth, provider)
+      .then(result => {
+        const user = result.user;
+        console.log(user);
+
+      })
+      .catch(error => {
+      console.log('error',error.message)
+    })
+  }
+
 
   const from = location.state?.from?.pathname || "/";
   
@@ -20,7 +36,7 @@ const Login = () => {
 
     signIn(email, password)
       .then(result => {
-        setUser(loggedUser);
+        setUser(result.user);;
         form.reset();
         navigate(from, {replace:true})
       })
@@ -33,8 +49,10 @@ const Login = () => {
     <div>
       <div className="hero min-h-screen bg-white">
         <div className="hero-content flex-col ">
-          <div className="text-center lg:text-left">
-            <h1 className="text-3xl font-bold mb-8">Login now!</h1>
+          <div className="text-center">
+            <h1 className="text-3xl font-bold mb-8">
+              Login Flavors of Mexico!
+            </h1>
           </div>
           <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
             <form onSubmit={handleLogin} className="card-body">
@@ -62,9 +80,12 @@ const Login = () => {
                   required
                 />
                 <label className="label">
-                  <a href="#" className="label-text-alt link link-hover">
-                    Forgot password?
-                  </a>
+                  <div
+                    to="/register"
+                    className="label-text-alt link link-hover mt-4"
+                  >
+                    <Link to="/register">Create New Account</Link>
+                  </div>
                 </label>
               </div>
               <div className="form-control mt-6">
@@ -73,8 +94,16 @@ const Login = () => {
             </form>
 
             <Link to="/register">
-              <button className="btn btn-link">Register</button>
+              <div className="label-text-alt text-lg link link-hover text-center mb-4">
+                Register Flavors of Mexico
+              </div>
             </Link>
+            <div className="mx-auto mb-6">
+              <p className="text-lg text-center">or</p>
+              <button onClick={handleGoogleLogin} className="my-btn ">Sign in with google</button>
+              <p className="text-lg text-center">or</p>
+              <button className="my-btn ">Sign in with Git hub</button>
+            </div>
           </div>
         </div>
       </div>

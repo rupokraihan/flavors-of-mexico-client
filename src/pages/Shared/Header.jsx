@@ -58,7 +58,7 @@ const Header = () => {
                         src={user.photoURL}
                         alt=""
                       />
-                      <div className="absolute top-0 -right-24 transform -translate-x-1/2 bg-blue-300 px-2 py-2 rounded-md shadow opacity-0 transition-opacity duration-300">
+                      <div className="absolute -top-5 left-24 transform -translate-x-1/2 bg-blue-300 px-2 py-2 rounded-md shadow opacity-0 transition-opacity duration-300">
                         {user.displayName}
                       </div>
                     </div>
