@@ -7,10 +7,7 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import Contact from "../home/Contact";
 
-
-
 const Home = () => {
-  
   const [allData, setAllData] = useState([]);
 
   useEffect(() => {
@@ -20,7 +17,7 @@ const Home = () => {
       .then((res) => res.json())
       .then((data) => setAllData(data))
       .catch((error) => console.error(error));
-  },[])
+  }, []);
   return (
     <div>
       <div className="relative py-60 mt-4">
@@ -55,10 +52,10 @@ const Home = () => {
       <h1 className="text-5xl font-bold text-center mt-16">
         Top Experienced Chefs
       </h1>
-      <div className="my-container grid gap-8 lg:grid-cols-2 mt-10">
+      <div className="my-container lg:grid gap-8 lg:grid-cols-2 mt-10">
         {allData.map((data) => (
           <section key={data.id}>
-            <div className="card card-side bg-base-100 w-full shadow-xl h-96 ">
+            <div className="card card-side bg-base-100 w-sm-full    shadow-xl h-96 ">
               <figure>
                 <div>
                   <LazyLoadImage
@@ -103,7 +100,7 @@ const Home = () => {
         <TakeChefs />
       </section>
       <section>
-        <Contact/>
+        <Contact />
       </section>
     </div>
   );
