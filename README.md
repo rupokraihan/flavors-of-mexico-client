@@ -1,5 +1,5 @@
 ## Live Link
-Flavors of Mexico live site link -> [flexJobs]()
+Flavors of Mexico live site link -> [Flavors of Mexico](https://mexican-chef-recipe-hunter.web.app/)
 
 ##  project Features
 
@@ -11,6 +11,6 @@ Flavors of Mexico live site link -> [flexJobs]()
 - If anyone wants too see this data,the user must be logged in.
 - Favorite button click and show a toast message.
 - In the home page also two another section.
-- The section are helpful for user to find us and know our chefs. 
+- The section are helpful for user to find us and know about our chefs. 
 - When go to blog page answering some important question.
 - At the bottom of the page is a footer.

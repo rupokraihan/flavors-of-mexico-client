@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../providers/AuthProviders";
 import { GithubAuthProvider, GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
@@ -11,17 +11,17 @@ const Login = () => {
   const location = useLocation();
   const googleProvider = new GoogleAuthProvider();
   const githubProvider = new GithubAuthProvider();
+  const [error, setError] = useState(null);
 
 
   const handleGoogleLogin = () => {
     signInWithPopup(auth, googleProvider)
       .then(result => {
         const user = result.user;
-        console.log(user);
 
       })
       .catch(error => {
-      console.log('error',error.message)
+      setError(error.message)
     })
   }
 
@@ -29,10 +29,9 @@ const Login = () => {
     signInWithPopup(auth, githubProvider)
       .then((result) => {
         const githubUser = result.user;
-        console.log(githubUser);
       })
       .catch((error) => {
-        console.log("error", error.message);
+        setError(error.message);
       });
   }
 
@@ -54,7 +53,7 @@ const Login = () => {
         navigate(from, {replace:true})
       })
       .catch(error => {
-      console.log(error)
+      setError(error.message)
     })
     
   }
@@ -64,7 +63,10 @@ const Login = () => {
         <div className="hero-content flex-col ">
           <div className="text-center">
             <h1 className="text-3xl font-semibold mb-8">
-              Login <span className="text-blue-600 font-bold">Flavors of Mexico!</span>
+              Login{" "}
+              <span className="text-blue-600 font-bold">
+                Flavors of Mexico!
+              </span>
             </h1>
           </div>
           <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
@@ -101,7 +103,7 @@ const Login = () => {
                   </div>
                 </label>
               </div>
-              <div className="form-control mt-6">
+              <div className="form-control mt-4">
                 <button className="btn btn-primary">Login</button>
               </div>
             </form>
@@ -116,6 +118,7 @@ const Login = () => {
                 Sign in with Git hub
               </button>
             </div>
+      <p className="text-center text-red-700 mb-4">{error}</p>
           </div>
         </div>
       </div>

@@ -16,8 +16,9 @@ const Register = () => {
     const photo = form.userphoto.value;
 
     if (password.length < 6) {
-      setError("password must be 6 characters or longer");
+      setError("Password must be 6 characters or longer");
     }
+    
 
     createUser(email, password)
       .then((result) => {
@@ -36,7 +37,9 @@ const Register = () => {
       <div className="hero min-h-screen bg-white">
         <div className="hero-content flex-col ">
           <div className="text-center">
-            <h1 className="text-3xl font-bold mb-8">Register now!</h1>
+            <h1 className="text-3xl font-bold mb-8">
+              Register <span className="text-blue-600">Flavors of Mexico</span>
+            </h1>
           </div>
           <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
             <form onSubmit={handleRegister} className="card-body">
@@ -83,20 +86,21 @@ const Register = () => {
                   className="input input-bordered"
                 />
                 <label className="label">
-                  <a href="#" className="label-text-alt link link-hover">
-                    Forgot password?
-                  </a>
+                  <Link
+                    to="/login"
+                    className="label-text-alt link link-hover mt-4"
+                  >
+                    Already have an
+                    <span className="text-blue-600">Account</span>
+                  </Link>
                 </label>
               </div>
-              <div className="form-control mt-6">
+              <div className="form-control mt-4">
                 <button className="btn btn-primary">Register</button>
               </div>
             </form>
-            <Link to="/login">
-              <button className="btn btn-link">Login</button>
-            </Link>
 
-            <p className="text-red-500">{error}</p>
+            <p className="text-red-700 text-center mb-4">{error}</p>
           </div>
         </div>
       </div>

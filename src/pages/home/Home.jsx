@@ -14,7 +14,9 @@ const Home = () => {
   const [allData, setAllData] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/alldata")
+    fetch(
+      "https://mexican-chef-recipe-hunter-server-rupokraihan.vercel.app/alldata"
+    )
       .then((res) => res.json())
       .then((data) => setAllData(data))
       .catch((error) => console.error(error));

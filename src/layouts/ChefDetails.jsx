@@ -4,7 +4,6 @@ import { ToastContainer, toast } from "react-toastify";
 import LoadingSpinner from "../components/LoadingSpinner";
 
 const ChefDetails = () => {
-  // const navigation = useNavigation();
 
 
   const { id } = useParams();
@@ -13,7 +12,9 @@ const ChefDetails = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:5000/alldata")
+    fetch(
+      "https://mexican-chef-recipe-hunter-server-rupokraihan.vercel.app/alldata"
+    )
       .then((res) => res.json())
       .then((data) => {
         const chef = data.filter((item) => item.id === id)[0];
