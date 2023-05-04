@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../providers/AuthProviders";
-import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
+import { GithubAuthProvider, GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
 import app from "../utils/firebase.config";
 
 const Login = () => {
@@ -9,10 +9,12 @@ const Login = () => {
   const { signIn,setUser } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
-  const provider = new GoogleAuthProvider();
+  const googleProvider = new GoogleAuthProvider();
+  const githubProvider = new GithubAuthProvider();
+
 
   const handleGoogleLogin = () => {
-    signInWithPopup(auth, provider)
+    signInWithPopup(auth, googleProvider)
       .then(result => {
         const user = result.user;
         console.log(user);
@@ -21,6 +23,17 @@ const Login = () => {
       .catch(error => {
       console.log('error',error.message)
     })
+  }
+
+  const githubGithubLogin = () => {
+    signInWithPopup(auth, githubProvider)
+      .then((result) => {
+        const githubUser = result.user;
+        console.log(githubUser);
+      })
+      .catch((error) => {
+        console.log("error", error.message);
+      });
   }
 
 
@@ -50,8 +63,8 @@ const Login = () => {
       <div className="hero min-h-screen bg-white">
         <div className="hero-content flex-col ">
           <div className="text-center">
-            <h1 className="text-3xl font-bold mb-8">
-              Login Flavors of Mexico!
+            <h1 className="text-3xl font-semibold mb-8">
+              Login <span className="text-blue-600 font-bold">Flavors of Mexico!</span>
             </h1>
           </div>
           <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
@@ -93,16 +106,15 @@ const Login = () => {
               </div>
             </form>
 
-            <Link to="/register">
-              <div className="label-text-alt text-lg link link-hover text-center mb-4">
-                Register Flavors of Mexico
-              </div>
-            </Link>
             <div className="mx-auto mb-6">
-              <p className="text-lg text-center">or</p>
-              <button onClick={handleGoogleLogin} className="my-btn ">Sign in with google</button>
-              <p className="text-lg text-center">or</p>
-              <button className="my-btn ">Sign in with Git hub</button>
+              <p className="text-lg text-center ">or</p>
+              <button onClick={handleGoogleLogin} className="my-btn">
+                Sign in with google
+              </button>
+              <p className="text-lg text-center mt-2">or</p>
+              <button onClick={githubGithubLogin} className="my-btn ">
+                Sign in with Git hub
+              </button>
             </div>
           </div>
         </div>
