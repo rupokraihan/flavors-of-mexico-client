@@ -1,9 +1,10 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../providers/AuthProviders";
 
 const Register = () => {
-  const { user, createUser, userInfo } = useContext(AuthContext);
+  const { user, createUser, userInfo,setUser } = useContext(AuthContext);
+  const [error,setError]=useState('')
 
   const handleRegister = (event) => {
     event.preventDefault();
@@ -14,11 +15,14 @@ const Register = () => {
     const password = form.password.value;
     const photo = form.userphoto.value;
 
-    console.log(name,email,password,photo)
+    
+    if (password.length < 6) {
+      setError("password must be 6 characters or longer")
+    }
 
     createUser(email, password)
       .then((result) => {
-        const loggedUser = result.user;
+        setUser(result.user)
         
         userInfo(loggedUser, name, photo)
         .then ((result)=>{})
@@ -32,7 +36,7 @@ const Register = () => {
   };
   return (
     <div>
-      <div className="hero min-h-screen bg-base-200">
+      <div className="hero min-h-screen bg-white">
         <div className="hero-content flex-col ">
           <div className="text-center">
             <h1 className="text-3xl font-bold mb-8">Register now!</h1>
@@ -96,6 +100,8 @@ const Register = () => {
             <Link to="/login">
               <button className="btn btn-link">Login</button>
             </Link>
+
+            <p className="text-red-500">{error}</p>
           </div>
         </div>
       </div>

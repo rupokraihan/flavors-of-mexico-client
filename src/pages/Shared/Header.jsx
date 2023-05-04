@@ -46,19 +46,31 @@ const Header = () => {
                   <NavLink
                     onClick={handleLogout}
                     className={({ isActive }) =>
-                      isActive ? "active" : "default"
+                      isActive ? "default" : "active"
                     }
                   >
                     Sign out
                   </NavLink>
-                  <div className="w-11 h-11 rounded-full ring  ">
-                    <img
-                      className="rounded-full w-11 h-11"
-                      src={user.photoURL}
-                      alt="User profile"
-                    />
+                  <div className="relative">
+                    <div className="w-11 h-11 rounded-full ring">
+                      <img
+                        className="rounded-full w-11 h-11 hover:opacity-75"
+                        src={user.photoURL}
+                        alt=""
+                      />
+                      <div className="absolute top-0 -right-24 transform -translate-x-1/2 bg-blue-300 px-2 py-2 rounded-md shadow opacity-0 transition-opacity duration-300">
+                        {user.displayName}
+                      </div>
+                    </div>
                   </div>
                 </div>
+                <style>
+                  {`
+        .w-11:hover .absolute {
+          opacity: 1;
+        }
+      `}
+                </style>
               </>
             ) : (
               <NavLink

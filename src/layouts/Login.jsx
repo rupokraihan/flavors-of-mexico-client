@@ -1,10 +1,14 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../providers/AuthProviders";
 
 const Login = () => {
    ;
-  const { signIn } = useContext(AuthContext);
+  const { signIn,setUser } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const from = location.state?.from?.pathname || "/";
   
 
   const handleLogin = event => {
@@ -16,8 +20,9 @@ const Login = () => {
 
     signIn(email, password)
       .then(result => {
-        const loggedUser = result.user;
+        setUser(loggedUser);
         form.reset();
+        navigate(from, {replace:true})
       })
       .catch(error => {
       console.log(error)
@@ -26,7 +31,7 @@ const Login = () => {
   }
   return (
     <div>
-      <div className="hero min-h-screen bg-base-200">
+      <div className="hero min-h-screen bg-white">
         <div className="hero-content flex-col ">
           <div className="text-center lg:text-left">
             <h1 className="text-3xl font-bold mb-8">Login now!</h1>
