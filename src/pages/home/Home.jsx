@@ -58,7 +58,7 @@ const Home = () => {
       <div className="my-container grid gap-8 lg:grid-cols-2 mt-10">
         {allData.map((data) => (
           <section key={data.id}>
-            <div className="card card-side bg-base-100 shadow-xl h-96 ">
+            <div className="card card-side bg-base-100 w-full shadow-xl h-96 ">
               <figure>
                 <div>
                   <LazyLoadImage
